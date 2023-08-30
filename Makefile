@@ -1,5 +1,5 @@
 # Define the target and output executable name
-TARGET = video_poker
+TARGET = video_poker.out
 
 # Get a list of all .c files in the working directory
 SRCS = $(wildcard *.c)

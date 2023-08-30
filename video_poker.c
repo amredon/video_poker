@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
@@ -11,14 +12,23 @@
 int main(void){
 
     card deck[52];
-//  card cards[5];
+    card cards[5];
 
     initializeDeck(deck, 1);
+
+    srand(time(NULL));
 
     for(int i = 0; i < 15000; i++){
 
         shuffleDeck(deck, 1);
-        printCards(deck, 5, 5);
+
+        //Load cards array with first 5 elements of deck
+
+        for(int i = 0; i < 5; i++){
+            cards[i] = deck[i];
+        }
+
+        printCards(cards, 5, 5);
 
         if(fourOfKindCheck(deck)){
             printf("FOUR OF A KIND!!!!!!!!!AFTER %i HANDS\n", i);
@@ -26,7 +36,7 @@ int main(void){
         }
 
     }
-
+    sleep(1);
     return 0;
 
 }
@@ -34,25 +44,25 @@ int main(void){
 int fourOfKindCheck(card *cards){
 
 
-        if( cards[0].rankValue == cards[1].rankValue &&
-            cards[0].rankValue == cards[2].rankValue &&
-            cards[0].rankValue == cards[3].rankValue ||
+        if( (cards[0].rankValue == cards[1].rankValue &&
+             cards[0].rankValue == cards[2].rankValue &&
+             cards[0].rankValue == cards[3].rankValue) ||
 
-            cards[0].rankValue == cards[1].rankValue &&
-            cards[0].rankValue == cards[2].rankValue &&
-            cards[0].rankValue == cards[4].rankValue ||
+            (cards[0].rankValue == cards[1].rankValue &&
+             cards[0].rankValue == cards[2].rankValue &&
+             cards[0].rankValue == cards[4].rankValue) ||
 
-            cards[0].rankValue == cards[1].rankValue &&
-            cards[0].rankValue == cards[3].rankValue &&
-            cards[0].rankValue == cards[4].rankValue ||
+            (cards[0].rankValue == cards[1].rankValue &&
+             cards[0].rankValue == cards[3].rankValue &&
+             cards[0].rankValue == cards[4].rankValue) ||
 
-            cards[0].rankValue == cards[2].rankValue &&
-            cards[0].rankValue == cards[3].rankValue &&
-            cards[0].rankValue == cards[4].rankValue ||
+            (cards[0].rankValue == cards[2].rankValue &&
+             cards[0].rankValue == cards[3].rankValue &&
+             cards[0].rankValue == cards[4].rankValue) ||
             
-            cards[1].rankValue == cards[2].rankValue &&
-            cards[1].rankValue == cards[3].rankValue &&
-            cards[1].rankValue == cards[4].rankValue 
+            (cards[1].rankValue == cards[2].rankValue &&
+             cards[1].rankValue == cards[3].rankValue &&
+             cards[1].rankValue == cards[4].rankValue) 
           ){return(1);}
 
         else{return(0);}

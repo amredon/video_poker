@@ -86,8 +86,12 @@ void shuffleDeck(card *topOfDeck, int numOfDecks){
 
     card *deckPtr = topOfDeck;
     card temp;
+    static bool seeded = false;
 
-    srand(time(NULL));
+    if(!seeded){
+        srand(time(NULL));
+        seeded = true;
+    }
 
     for(int i = 0; i < numOfDecks * 52; i++){
 
