@@ -13,12 +13,14 @@ int main(void){
 
     card deck[52];
     card cards[5];
+    int fourOfKind = 0;
+
 
     initializeDeck(deck, 1);
 
     srand(time(NULL));
 
-    for(int i = 0; i < 15000; i++){
+    for(int i = 0; i < 10000; i++){
 
         shuffleDeck(deck, 1);
 
@@ -31,11 +33,11 @@ int main(void){
         printCards(cards, 5, 5);
 
         if(fourOfKindCheck(deck)){
-            printf("FOUR OF A KIND!!!!!!!!!AFTER %i HANDS\n", i);
-            break;
+            fourOfKind++;
         }
 
     }
+    printf("%i FOUR OF A KIND!!!!!!!!!AFTER HANDS\n", fourOfKind);
     sleep(1);
     return 0;
 
