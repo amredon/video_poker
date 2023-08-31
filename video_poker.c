@@ -37,7 +37,7 @@ int main(void){
         }
 
     }
-    printf("%i FOUR OF A KIND!!!!!!!!!AFTER HANDS\n", fourOfKind);
+    printf("%i FOUR OF A KIND!!!!!!!!!AFTER 10,000 HANDS\n", fourOfKind);
     sleep(1);
     return 0;
 
